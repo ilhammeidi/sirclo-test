@@ -39,6 +39,7 @@
 .table th{
   padding: 10px;
   background: #dedede;
+  text-transform: capitalize
 }
 
 .filter{

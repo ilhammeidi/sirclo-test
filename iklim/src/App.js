@@ -10,12 +10,12 @@ function toDateTime(sec) {
 function App() {
   const optionCity = [
     {
-      id: '1880252',
-      city: 'Singapore'
-    },
-    {
       id: '1642911',
       city: 'Jakarta'
+    },
+    {
+      id: '1880252',
+      city: 'Singapore'
     },
     {
       id: '1609350',
@@ -23,7 +23,7 @@ function App() {
     },
   ];
   const [apiData, setApi] = useState(null);
-  const [city, setCity] = useState('Jakarta');
+  const [city, setCity] = useState('jakarta');
   const [dataFilled, setFilled] = useState(false);
   
   const fetchApi = (cityID) => {
@@ -37,16 +37,17 @@ function App() {
     }).then(resJson => {
       setApi(resJson);
       setFilled(true);
-      console.log(resJson)
     });
   }
 
   useEffect(() => {
-    fetchApi('1642911');
+    fetchApi('jakarta');
   }, []);
   
   const handleChangeCity = (e) => {
     fetchApi(e.target.value);
+    const cityName = e.target.options[e.target.selectedIndex].text;
+    setCity(cityName);
   }
   
   const getSuhuAvg = (data) => {
@@ -67,7 +68,7 @@ function App() {
   }
   return (
     <div className="App">
-      <div class="filter">
+      <div className="filter">
         <select onChange={(e) => handleChangeCity(e)}>
           {optionCity.map((item,index) => (
             <option key={index} value={item.id}>{item.city}</option>
